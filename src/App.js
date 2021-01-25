@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Clock from './components/Clock/Clock';
+import InputForm from './components/InputForm/InputForm';
+import {nanoid} from 'nanoid';
 
 function App() {
+
+  const [clocks, setClock] = useState([]);
+
+  const onAddClockHandler = (city, timezone) => {
+      setClock(prevClock => [...prevClock,{city: city, timezone: timezone, id: nanoid()}]);
+      console.log(clocks);
+  }
+
+  const onDelHandler = (id) => {
+      setClock(prevClock => prevClock.filter(el => el.id!==id));
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <InputForm onAddClock={onAddClockHandler}/>
+     <div className="Clocks">
+     {clocks.length > 0 ? clocks.map((clock, index) => <Clock clock={clock} key={index} onDel={onDelHandler}/>) : null}
+     </div>
     </div>
   );
 }

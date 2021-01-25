@@ -1,0 +1,30 @@
+.Clock {
+    margin-left: 40px;
+
+}
+
+
+.Circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 1px solid black;
+    position: relative;
+    margin-top: 20px;
+}
+
+.Arrow {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.City {
+    text-align: center;
+}
+
+
+.Delete {
+    background-color: white;
+    margin-left: 50px;
+}
