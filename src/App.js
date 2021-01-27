@@ -10,7 +10,6 @@ function App() {
 
   const onAddClockHandler = (city, timezone) => {
       setClock(prevClock => [...prevClock,{city: city, timezone: timezone, id: nanoid()}]);
-      console.log(clocks);
   }
 
   const onDelHandler = (id) => {

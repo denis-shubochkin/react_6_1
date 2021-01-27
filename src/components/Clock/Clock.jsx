@@ -8,22 +8,19 @@ export default class Clock extends React.Component {
 
     constructor(props) {
         super(props);
-        this.timezone = props.clock.timezone;
-        this.city = props.clock.city;
        // this.state = {time : new Date().getHours()+':'+ new Date().getMinutes() + ':' + new Date().getSeconds()};
         this.state = {state: true};
         this.tzdiff = new Date().getTimezoneOffset();
-        this.id = props.clock.id;
-        this.handleDel = props.onDel;
         this.interval = null;
     }
+        
 
     getH() {
-        if(this.timezone.substring(0,1)==='-')
+        if(this.props.clock.timezone.substring(0,1)==='-')
         {
-            return Number(this.timezone.substring(1))*(-1)
+            return Number(this.props.clock.timezone.substring(1))*(-1)
         }
-        else return Number(this.timezone.substring(1))
+        else return Number(this.props.clock.timezone.substring(1))
     }
 
     componentDidMount() {
@@ -38,7 +35,7 @@ export default class Clock extends React.Component {
 
     onDelHandler(e) {
         console.log(e.target.id);
-        this.handleDel(e.target.id);
+        this.props.onDel(e.target.id);
     }
 
     
@@ -68,8 +65,8 @@ render() {
     };
      return(
     <div className="Clock">
-        <div className="City">{this.city}
-        <button className="Delete" id={this.id} onClick={evt=>this.onDelHandler(evt)}>×</button></div>
+        <div className="City">{this.props.clock.city}
+        <button className="Delete" id={this.props.clock.id} onClick={evt=>this.props.onDel(evt.target.id)}>×</button></div>
         <div className="ClockBlock">
             <div className="Circle"> 
             <img className="Arrow" src={arrowM} alt='...' style={stylesM}></img>
